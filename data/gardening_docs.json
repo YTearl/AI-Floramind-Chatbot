@@ -1,0 +1,114 @@
+[
+  {
+    "id": "doc-soil-01",
+    "title": "Soil Preparation & Health for Beginners",
+    "category": "Soil & Compost",
+    "section": "Soil Fundamentals",
+    "text": "Healthy soil is the foundation of every thriving garden. Good garden soil typically has a loamy texture—a balanced blend of sand, silt, and clay that drains excess moisture while retaining essential nutrients and dampness. Before planting, test your soil texture by squeezing a handful of moist soil: if it holds its shape loosely and crumbles easily when gently poked, it is ideal loamy soil. If it forms a dense, sticky ball, you have heavy clay; if it collapses immediately without holding shape, it is sandy. Adding organic compost or aged leaf mold improves both clay and sandy soils dramatically."
+  },
+  {
+    "id": "doc-soil-02",
+    "title": "Soil pH and Nutrient Availability",
+    "category": "Soil & Compost",
+    "section": "Soil Chemistry",
+    "text": "Most garden vegetables, herbs, and flowering plants thrive in soil with a slightly acidic to neutral pH between 6.0 and 7.0. Within this pH range, essential macronutrients like nitrogen (N), phosphorus (P), and potassium (K) are most soluble and readily absorbed by plant root hairs. If soil is too acidic (pH below 5.5), nutrients like phosphorus become locked up; adding agricultural lime (calcium carbonate) can gradually raise the pH. If soil is overly alkaline (pH above 7.5), adding elemental sulfur or composted pine needles helps lower pH gently over time."
+  },
+  {
+    "id": "doc-compost-01",
+    "title": "Home Composting: The Green and Brown Rule",
+    "category": "Soil & Compost",
+    "section": "Composting Basics",
+    "text": "Compost is nature's black gold, enriching the soil with beneficial microbes and moisture retention. A balanced compost pile requires approximately 2 to 3 parts 'brown' carbon-rich materials to 1 part 'green' nitrogen-rich materials. Brown materials include dry leaves, shredded cardboard, untreated wood chips, straw, and dry twigs. Green materials include vegetable peels, fruit scraps, fresh grass clippings, and used coffee grounds. Avoid adding meat, dairy, animal feces, or diseased plants to backyard piles. Keep the pile as damp as a wrung-out sponge and aerate it by turning every 1 to 2 weeks."
+  },
+  {
+    "id": "doc-seeds-01",
+    "title": "Seed Germination and Starting Indoors",
+    "category": "Seeds & Planting",
+    "section": "Germination Guide",
+    "text": "Seeds require three primary triggers to germinate: appropriate moisture, adequate warmth, and oxygen. Most vegetable and flower seeds germinate best at soil temperatures between 20°C and 25°C (68°F to 77°F). Use a sterile, fine-textured seed-starting mix rather than heavy outdoor garden soil to prevent damping-off disease (a fungal ailment that causes tender seedlings to collapse at soil level). As a general rule of thumb, plant seeds at a depth approximately two to three times their width. Tiny seeds like basil, petunias, and lettuce require light to germinate and should only be pressed lightly onto the surface."
+  },
+  {
+    "id": "doc-seeds-02",
+    "title": "Hardening Off Seedlings",
+    "category": "Seeds & Planting",
+    "section": "Transplanting",
+    "text": "Seedlings grown indoors or under grow lights are tender and unaccustomed to outdoor wind, intense ultraviolet sunlight, and temperature fluctuations. 'Hardening off' is the critical transition period lasting 7 to 10 days before transplanting into the ground. Start by placing seedlings outdoors in a sheltered, shaded location for 2 hours on day one. Gradually increase their daily exposure to gentle morning sunshine and breeze over the course of a week, bringing them indoors at night if temperatures drop. Keep the soil evenly moist during this adjustment period."
+  },
+  {
+    "id": "doc-water-01",
+    "title": "Watering Guidelines: Deep Watering vs Shallow Sprinkling",
+    "category": "Care & Maintenance",
+    "section": "Watering Best Practices",
+    "text": "Water deeply and infrequently rather than providing frequent shallow sprinkles. Deep watering encourages roots to grow downward into the cooler subsoil where moisture persists, making plants resilient to drought and heatwaves. Always water early in the morning so plant foliage dries quickly in the daytime sun, substantially reducing the risk of fungal infections such as powdery mildew and black spot. Apply water at the soil base around the root zone rather than overhead onto flowers and leaves. A 2-inch layer of organic mulch (shredded bark, straw, or leaves) reduces evaporation by up to 70%."
+  },
+  {
+    "id": "doc-light-01",
+    "title": "Understanding Sunlight Requirements",
+    "category": "Care & Maintenance",
+    "section": "Sunlight Categories",
+    "text": "Plants are commonly categorized into three sunlight levels: Full Sun (at least 6 to 8 hours of direct, unfiltered sunlight per day, required by tomatoes, peppers, squashes, and sunflowers); Partial Sun or Partial Shade (3 to 6 hours of sunlight, ideally gentle morning sun or dappled light, preferred by lettuce, spinach, cilantro, mint, and hydrangeas); and Full Shade (fewer than 3 hours of direct sun or bright indirect light all day, suitable for hostas, ferns, impatiens, and cast-iron plants)."
+  },
+  {
+    "id": "doc-fertilizer-01",
+    "title": "Understanding N-P-K Ratios & Organic Fertilizers",
+    "category": "Fertilizers & Nutrition",
+    "section": "Plant Nutrition",
+    "text": "Fertilizer packages display three numbers representing Nitrogen (N), Phosphorus (P), and Potassium (K). Nitrogen promotes vigorous green leafy foliage; Phosphorus fuels strong root development, flowering, and fruit set; Potassium boosts overall disease resistance, stem strength, and cellular water regulation. For leafy greens and herbs, high-nitrogen organic fertilizers like fish emulsion or blood meal work well. For flowering and fruiting plants like tomatoes, peppers, and roses, choose a balanced or higher-phosphorus blend like bone meal or organic seaweed-and-kelp meal once flowers appear."
+  },
+  {
+    "id": "doc-herbs-01",
+    "title": "Best Culinary Herbs for Beginners",
+    "category": "Vegetables & Herbs",
+    "section": "Herbs Guide",
+    "text": "Culinary herbs are among the easiest and most rewarding plants for beginner gardeners. Basil thrives in warm sunshine and well-draining soil; pinch off the terminal bud clusters regularly to encourage bushy side shoots and prevent premature flowering. Mint is exceptionally hardy and vigorous; always plant mint in containers or raised pots to prevent its aggressive underground rhizomes from overtaking the garden bed. Rosemary, thyme, and oregano are Mediterranean herbs that prefer drier soil, plentiful sunshine, and infrequent watering."
+  },
+  {
+    "id": "doc-veg-01",
+    "title": "Growing Tomatoes for Beginners",
+    "category": "Vegetables & Herbs",
+    "section": "Tomato Cultivation",
+    "text": "Tomatoes are sun-loving, warm-season nightshades that need at least 6 to 8 hours of direct sunlight daily and consistent soil moisture. Inconsistent watering often causes blossom end rot—a dark, sunken leathery patch at the bottom of the fruit caused by calcium deficiency aggravated by uneven watering. Determinate (bush) varieties grow to a fixed compact size and produce fruit all at once, ideal for small spaces and containers. Indeterminate (vining) varieties continue growing, blooming, and fruiting until frost, requiring sturdy cages, trellises, or stakes to support vertical vines."
+  },
+  {
+    "id": "doc-pest-01",
+    "title": "Integrated Pest Management (IPM) & Organic Controls",
+    "category": "Pests & Diseases",
+    "section": "Organic Pest Control",
+    "text": "Integrated Pest Management prioritizes biological, cultural, and mechanical controls before synthetic chemicals. Aphids, spider mites, and whiteflies can often be dislodged with a brisk jet of water from the hose or treated with insecticidal soap or diluted cold-pressed neem oil (1-2 teaspoons neem oil plus 1/2 teaspoon mild castile soap per quart of warm water). Spray in the evening or early morning to prevent leaf scorch and protect beneficial pollinators like honeybees and hoverflies. Handpicking large pests like hornworms and slugs at dusk is highly effective."
+  },
+  {
+    "id": "doc-disease-01",
+    "title": "Common Plant Diseases: Powdery Mildew and Leaf Spot",
+    "category": "Pests & Diseases",
+    "section": "Fungal Diseases",
+    "text": "Powdery mildew appears as white, talcum-powder-like dust on leaf surfaces, common in warm temperatures with high relative humidity and stagnant air. Prevent fungal spread by spacing plants generously to maintain adequate airflow, pruning congested inner foliage, and strictly avoiding overhead splashing. For early outbreaks, spray a baking soda solution (1 teaspoon baking soda, 1/2 teaspoon gentle liquid soap per quart of water) or a 1:9 milk-to-water foliar spray in bright sun. Immediately discard heavily diseased foliage in trash bins—never into the compost pile."
+  },
+  {
+    "id": "doc-tropical-01",
+    "title": "Tropical Gardening: Climate, High Humidity, and Rainy Seasons",
+    "category": "Tropical Gardening",
+    "section": "Tropical Environments",
+    "text": "Tropical climates feature warm temperatures year-round (consistently above 20°C/68°F), elevated humidity levels, and distinct wet (monsoon) and dry seasons. In tropical environments, heavy torrential downpours can rapidly leach soluble nitrogen and calcium from sandy or porous volcanic soils. Use raised planting beds or mounds to ensure rapid drainage and prevent waterlogging around sensitive root systems during monsoon periods. Topdress beds regularly with finished compost and thick organic mulch to replenish nutrients and protect topsoil from heavy rain erosion."
+  },
+  {
+    "id": "doc-tropical-02",
+    "title": "Tropical Fruits, Vegetables, and Foliage Plants",
+    "category": "Tropical Gardening",
+    "section": "Tropical Species",
+    "text": "Thriving plants for warm tropical and subtropical gardens include kangkong (water spinach), bitter melon (ampalaya), yardlong beans, lemongrass, ginger, turmeric, papaya, calamansi, and sweet potato greens. For tropical ornamental flowers and foliage, hibiscus, bougainvillea, plumeria (frangipani), canna lilies, and monstera deliciosa flourish in the heat. Tropical plants rarely experience cold dormancy, so continuous light feeding and pest scouting are beneficial year-round."
+  },
+  {
+    "id": "doc-safety-01",
+    "title": "Garden Safety: Toxic Plants and Pet Precautions",
+    "category": "Garden Safety & Responsibility",
+    "section": "Plant Toxicity",
+    "text": "Responsible gardening includes knowing which plants are poisonous to curious pets and children. True lilies (Lilium species and Hemerocallis daylilies) are extremely toxic to cats—even consuming tiny amounts of pollen or drinking water from the vase can cause acute fatal kidney failure. Oleander (Nerium oleander) contains lethal cardiac glycosides in all plant tissues. Dieffenbachia (dumb cane), philodendrons, and pothos contain insoluble calcium oxalate crystals that cause severe oral irritation, swelling, and drooling if chewed by dogs or cats. Always verify plant safety before planting along accessible borders."
+  },
+  {
+    "id": "doc-safety-02",
+    "title": "Safe Pesticide and Chemical Handling",
+    "category": "Garden Safety & Responsibility",
+    "section": "Chemical Precautions",
+    "text": "When using any gardening treatment, prioritize organic solutions first. If conventional fungicides or insecticides are necessary, always read and adhere strictly to the product label instructions, harvest waiting periods (pre-harvest interval or PHI), and appropriate personal protective equipment (gloves, eye goggles, and masks). Never spray chemicals on windy days, near open water, or when flowers are blooming and active pollinators are present. Store all chemicals securely in original labeled containers out of reach of children and pets."
+  }
+]

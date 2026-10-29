@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floramind - RAG Gardening Assistant with Google Gemini</title>
+  <meta name="description" content="Floramind is an intelligent gardening mentor powered by Google Gemini, Hugging Face embeddings, and Pinecone vector database.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Botanical Theme CSS -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-botanical">
+
+  <!-- Main App Wrapper -->
+  <div class="app-layout d-flex flex-column min-vh-100">
+    
+    <!-- Top Navigation Header -->
+    <header class="navbar navbar-expand-lg border-bottom glass-header py-2 px-3 sticky-top">
+      <div class="container-fluid max-w-1200">
+        
+        <!-- Brand Identity -->
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-forest" href="#">
+          <span class="brand-icon-box shadow-sm">
+            <i class="fa-solid fa-seedling text-emerald"></i>
+          </span>
+          <span class="fs-4 tracking-tight">Floramind</span>
+          <span class="badge bg-soft-emerald text-emerald rounded-pill px-2 py-1 fs-xs border border-emerald-light">
+            Gemini RAG
+          </span>
+        </a>
+
+        <!-- Header Actions & Meta -->
+        <div class="d-flex align-items-center gap-2">
+          <!-- Active Model Pill -->
+          <div class="model-badge d-none d-md-flex align-items-center gap-2 py-1 px-3 rounded-pill bg-light border">
+            <i class="fa-brands fa-google text-primary fs-sm"></i>
+            <span class="fs-xs text-muted">Model:</span>
+            <strong class="fs-xs text-dark" id="headerModelBadge">{{ gemini_model }}</strong>
+          </div>
+
+          <!-- Architecture Info Button -->
+          <button class="btn btn-sm btn-outline-forest rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#architectureModal" title="View AI Architecture">
+            <i class="fa-solid fa-diagram-project me-1"></i> Architecture
+          </button>
+
+          <!-- Reset Conversation Button -->
+          <button class="btn btn-sm btn-light border text-muted rounded-pill px-3" id="clearChatBtn" title="Clear Conversation">
+            <i class="fa-solid fa-rotate-left me-1"></i> Reset
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- App Body Content -->
+    <main class="flex-grow-1 py-3 px-2 px-md-4">
+      <div class="container max-w-1200 h-100 d-flex flex-column">
+
+        <!-- Setup Alert Banner (If Gemini key is not configured) -->
+        {% if not gemini_configured %}
+        <div class="alert alert-warning border-0 shadow-sm rounded-4 d-flex align-items-center gap-3 py-2 px-3 mb-3 fade show">
+          <i class="fa-solid fa-circle-exclamation fs-4 text-warning"></i>
+          <div class="fs-sm flex-grow-1">
+            <strong>Gemini API Key Needed:</strong> Copy <code>.env.example</code> to <code>.env</code> and add your <code>GEMINI_API_KEY</code> to enable live generation. Running in local test/mock mode.
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        <!-- Chat Container Card -->
+        <div class="card chat-card border-0 shadow-lg rounded-4 flex-grow-1 d-flex flex-column overflow-hidden">
+          
+          <!-- Chat Messages Area -->
+          <div class="chat-messages-scroll flex-grow-1 p-3 p-md-4 overflow-y-auto" id="chatMessages">
+            
+            <!-- Welcome Message Card -->
+            <div class="welcome-box text-center p-4 my-2 mx-auto rounded-4 bg-glass border border-emerald-light shadow-sm">
+              <div class="welcome-avatar-wrapper mb-3 mx-auto shadow-sm">
+                <i class="fa-solid fa-leaf fs-2 text-emerald"></i>
+              </div>
+              <h1 class="h4 fw-bold text-forest mb-2">Hello! I'm Floramind, your Gardening Mentor</h1>
+              <p class="text-muted fs-sm max-w-600 mx-auto mb-3">
+                Whether you're starting seeds, caring for tomatoes, building compost, managing pests, or gardening in tropical climates, I'm here to offer step-by-step guidance grounded in verified references.
+              </p>
+
+              <!-- Quick Prompt Suggestion Chips -->
+              <div class="suggested-prompts-wrapper">
+                <span class="fs-xs fw-semibold text-uppercase text-muted d-block mb-2">Suggested Topics</span>
+                <div class="d-flex flex-wrap justify-content-center gap-2" id="quickPrompts">
+                  <button class="prompt-chip btn btn-sm btn-outline-emerald rounded-pill" data-prompt="How do I prepare healthy garden soil for beginners?">
+                    🌱 Soil Preparation
+                  </button>
+                  <button class="prompt-chip btn btn-sm btn-outline-emerald rounded-pill" data-prompt="What is the green and brown ratio for making compost?">
+                    🍂 Composting Basics
+                  </button>
+                  <button class="prompt-chip btn btn-sm btn-outline-emerald rounded-pill" data-prompt="How do I grow tomatoes and avoid blossom end rot?">
+                    🍅 Growing Tomatoes
+                  </button>
+                  <button class="prompt-chip btn btn-sm btn-outline-emerald rounded-pill" data-prompt="What gardening tips should I follow in humid tropical climates?">
+                    🌴 Tropical Gardening
+                  </button>
+                  <button class="prompt-chip btn btn-sm btn-outline-emerald rounded-pill" data-prompt="Which common garden plants are toxic to cats and dogs?">
+                    🐾 Pet-Safe Gardening
+                  </button>
+                  <button class="prompt-chip btn btn-sm btn-outline-emerald rounded-pill" data-prompt="How can I control powdery mildew organically?">
+                    🌿 Organic Pest & Disease
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Messages will be dynamically rendered here -->
+
+          </div>
+
+          <!-- Typing Indicator -->
+          <div class="typing-indicator-container px-4 py-2 d-none" id="typingIndicator">
+            <div class="d-inline-flex align-items-center gap-2 py-2 px-3 rounded-pill bg-light border text-muted fs-xs">
+              <div class="spinner-grow spinner-grow-sm text-emerald" role="status"></div>
+              <span>Floramind is searching Pinecone and consulting Gemini...</span>
+            </div>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="chat-input-bar border-top p-3 bg-white">
+            <form id="chatForm" class="d-flex align-items-end gap-2">
+              <div class="flex-grow-1 position-relative">
+                <textarea
+                  id="messageInput"
+                  class="form-control rounded-4 border py-2 px-3 shadow-none custom-textarea"
+                  placeholder="Ask Floramind about seeds, soil, pests, tropical plants, watering..."
+                  rows="1"
+                  maxlength="2000"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                id="sendButton"
+                class="btn btn-emerald rounded-circle d-flex align-items-center justify-content-center shadow-sm send-btn"
+                title="Send Message"
+              >
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+            </form>
+            <div class="d-flex justify-content-between align-items-center mt-2 px-2 text-muted fs-xxs">
+              <span>Press <kbd class="bg-light text-dark border">Enter</kbd> to send, <kbd class="bg-light text-dark border">Shift+Enter</kbd> for newline</span>
+              <span id="charCount">0/2000</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-2 text-center text-muted fs-xs border-top bg-white">
+      <div class="container">
+        <span>Floramind RAG System &bull; Embeddings: <code class="text-secondary">{{ embedding_model }}</code> &bull; LLM: <strong class="text-emerald">{{ gemini_model }}</strong></span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Architecture & System Status Modal -->
+  <div class="modal fade" id="architectureModal" tabindex="-1" aria-labelledby="architectureModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-bottom py-3 px-4">
+          <h2 class="modal-title fs-5 fw-bold text-forest d-flex align-items-center gap-2" id="architectureModalLabel">
+            <i class="fa-solid fa-diagram-project text-emerald"></i> Floramind AI Architecture
+          </h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-3">
+            
+            <!-- Component 1: Hugging Face -->
+            <div class="col-md-6">
+              <div class="card h-100 border rounded-3 p-3 bg-light">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="badge bg-warning text-dark"><i class="fa-solid fa-bolt"></i> Embeddings</div>
+                  <strong class="fs-sm">Hugging Face Transformers</strong>
+                </div>
+                <p class="fs-xs text-muted mb-1">Converts gardening documents and user questions into 384-dimensional dense vectors.</p>
+                <code class="fs-xs text-primary">{{ embedding_model }}</code>
+              </div>
+            </div>
+
+            <!-- Component 2: Pinecone -->
+            <div class="col-md-6">
+              <div class="card h-100 border rounded-3 p-3 bg-light">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="badge bg-info text-dark"><i class="fa-solid fa-database"></i> Vector DB</div>
+                  <strong class="fs-sm">Pinecone</strong>
+                </div>
+                <p class="fs-xs text-muted mb-1">Performs semantic cosine similarity search to retrieve the top 5 relevant document chunks.</p>
+                <span class="fs-xs text-secondary">Index: <code>floramind-gardening</code></span>
+              </div>
+            </div>
+
+            <!-- Component 3: Google Gemini -->
+            <div class="col-md-6">
+              <div class="card h-100 border rounded-3 p-3 bg-light">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="badge bg-primary"><i class="fa-brands fa-google"></i> LLM</div>
+                  <strong class="fs-sm">Google Gemini API</strong>
+                </div>
+                <p class="fs-xs text-muted mb-1">Uses official <code>google-genai</code> SDK with the Interactions API to generate friendly, grounded mentor responses.</p>
+                <code class="fs-xs text-success">{{ gemini_model }}</code>
+              </div>
+            </div>
+
+            <!-- Component 4: FastAPI -->
+            <div class="col-md-6">
+              <div class="card h-100 border rounded-3 p-3 bg-light">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="badge bg-success"><i class="fa-solid fa-server"></i> Backend</div>
+                  <strong class="fs-sm">FastAPI</strong>
+                </div>
+                <p class="fs-xs text-muted mb-1">Coordinates the RAG lifecycle, threshold checks, verified citations attribution, and frontend streaming.</p>
+                <span class="fs-xs text-muted">Python 3.11 + Uvicorn</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Grounding & Strict Source Rules -->
+          <div class="alert alert-success border-0 rounded-3 mt-3 mb-0 py-2 px-3 fs-xs">
+            <strong><i class="fa-solid fa-shield-halved me-1"></i> Hallucination Prevention & Attribution:</strong>
+            Floramind strictly checks relevance thresholds before providing citations. If knowledge base references are insufficient or missing, Gemini clearly explains the limitation rather than inventing sources.
+          </div>
+        </div>
+        <div class="modal-footer border-top py-2 px-4">
+          <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marked.js for markdown rendering in responses -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Frontend Chat Application JS -->
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>
